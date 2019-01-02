@@ -1,0 +1,17 @@
+{
+  "name": "opcuaclient",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node client.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mqtt": "^2.18.8",
+    "node-opcua": "^0.5.5",
+    "yargs": "^12.0.5"
+  }
+}
