@@ -1,2 +1,5 @@
 FROM node:latest
-RUN node install
+WORKDIR /app
+COPY app /app
+
+RUN npm install
