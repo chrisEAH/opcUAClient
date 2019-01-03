@@ -5,9 +5,7 @@
 const opcua = require("node-opcua");
 const async = require("async");
 const args = require('yargs').argv;
-
-var mqtt = require('mqtt')
-var clientMqtt  = mqtt.connect('mqtt://127.0.0.1')
+var mqtt = require('mqtt');
 
 const clientOPC = new opcua.OPCUAClient();
 
@@ -18,10 +16,10 @@ const mqttEndPoint = args.mqttEndPoint;
 let publish = args.publish;
 */
 
-const opcEndPoint=argv[0];
-let nodeId = argv[1];
-const mqttEndPoint = argv[2];
-let publish = argv[3];
+const opcEndPoint=process.argv[2];
+let nodeId = process.argv[3];
+const mqttEndPoint = process.argv[4];
+let publish = process.argv[5];
 
 
 
@@ -37,13 +35,16 @@ if(opcEndPoint == undefined || nodeId==undefined ||
     process.exit(1);
 }
 
+var clientMqtt  = mqtt.connect(mqttEndPoint);
+
+
 let the_session, the_subscription;
 
 async.series([
     function(callback){
         clientMqtt.on('connect', function () {
         {
-            console.log("connected to mqtt broker: "+ mqttEndPoint);
+            console.log("connect to MQTT Endpoint: "+ mqttEndPoint );
             callback(0);
         }
         });
@@ -53,7 +54,7 @@ async.series([
     function(callback)  {
         clientOPC.connect(opcEndPoint, function (err) {
             if(err) {
-                console.log(" cannot connect to endpoint :" , opcEndPoint );
+                console.log(" cannot connect to OPC UA Endpoint :"+ opcEndPoint );
             } else {
                 console.log("connected !");
             }
@@ -129,7 +130,7 @@ function(err) {
     } else {
         console.log("done!");
     }
-    client.disconnect(function(){});
+    //client.disconnect(function(){});
 }) ;
 
 
