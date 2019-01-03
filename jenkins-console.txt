@@ -1,9 +1,17 @@
 HASH=$(git rev-parse --short HEAD)
 #build the system
-sudo docker build -t localhost:5000/opc-ua-client:$HASH --no-cache .
+sudo docker build -t localhost:5000/opc-ua-client:latest --no-cache .
 
-    echo "Pushing"
-    
-    sudo docker push localhost:5000/opc-ua-client:$HASH
+#tag
+sudo docker tag localhost:5000/opc-ua-client localhost:5000/opc-ua-client:$HASH
+
+echo "Pushing"
+sudo docker push localhost:5000/opc-ua-client:$HASH
+sudo docker push localhost:5000/opc-ua-client:latest
+
+sudo docker rmi localhost:5000/opc-ua-client:$HASH --force
+sudo docker rmi localhost:5000/opc-ua-client:latest --force
+
+	
 
 return $ERR

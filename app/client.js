@@ -43,14 +43,14 @@ var clientMqtt  = mqtt.connect(mqttEndPoint);
 let the_session, the_subscription;
 
 async.series([
-    function(callback){
+    /*function(callback){
         clientMqtt.on('connect', function () {
         {
             console.log("connect to MQTT Endpoint: "+ mqttEndPoint );
             callback(0);
         }
         });
-    },
+    },*/
 
     // step 1 : connect to
     function(callback)  {
