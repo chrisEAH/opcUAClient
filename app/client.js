@@ -11,10 +11,19 @@ var clientMqtt  = mqtt.connect('mqtt://127.0.0.1')
 
 const clientOPC = new opcua.OPCUAClient();
 
+/*
 const opcEndPoint = args.opcEndPoint;
 let nodeId = args.nodeId;
 const mqttEndPoint = args.mqttEndPoint;
 let publish = args.publish;
+*/
+
+const opcEndPoint=argv[0];
+let nodeId = argv[1];
+const mqttEndPoint = argv[2];
+let publish = argv[3];
+
+
 
 console.log("opcEndPoint: "+opcEndPoint);
 console.log("mqttEndPoint: "+mqttEndPoint);
