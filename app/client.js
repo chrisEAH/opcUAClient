@@ -21,6 +21,8 @@ let nodeId = process.argv[3];
 const mqttEndPoint = process.argv[4];
 let publish = process.argv[5];
 
+console.log("Parameterreinfolge: opcEndPoint, mqttEndPoint, nodeId, publish");
+console.log("Beispiel: opc.tcp://DESKTOP-BMPPPBP:4334/OPCUA/SimulationServer  ns=5;s=Counter1 mqtt://127.0.0.1 Counter1");
 
 
 console.log("opcEndPoint: "+opcEndPoint);
