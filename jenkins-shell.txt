@@ -1,0 +1,33 @@
+#Default compose args
+COMPOSE_ARGS="-f docker-compose.yml -p jenkins"
+
+#1.Make sure old containers are gone
+sudo docker-compose $COMPOSE_ARGS stop
+sudo docker-compose $COMPOSE_ARGS rm --force -v
+
+#2.build the system
+echo "build"
+sudo docker-compose $COMPOSE_ARGS build --no-cache
+
+#3.Rename
+echo "rename"
+HASH=$(git rev-parse --short HEAD)
+sudo docker tag jenkins_opc_ua_gateway localhost:5000/opc_ua_gateway:$HASH
+sudo docker tag jenkins_opc_ua_gateway localhost:5000/opc_ua_gateway:latest
+
+#4.Pushing
+echo "Pushing"
+sudo docker push localhost:5000/opc_ua_gateway:$HASH
+sudo docker push localhost:5000/opc_ua_gateway:latest
+
+#5.Pull down the system
+echo "Pull down the system"
+sudo docker-compose $COMPOSE_ARGS stop
+
+#6.Delete Images
+echo "Delete Images"
+sudo docker rmi localhost:5000/opc_ua_gateway:$HASH
+sudo docker rmi localhost:5000/opc_ua_gateway:latest
+sudo docker rmi jenkins_opc_ua_gateway
+
+return $ERR

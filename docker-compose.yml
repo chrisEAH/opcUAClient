@@ -1,0 +1,7 @@
+opc_ua_gateway:
+  build: .
+  environment:
+    - ENV=TEST
+    - mqtt=mqtt://127.0.0.1
+    - opc_end_point=opc.tcp://DESKTOP-BMPPPBP:4334/OPCUA/SimulationServer
+    - opc_node_id=ns=5;s=Counter1

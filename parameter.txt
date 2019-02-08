@@ -1,6 +1,6 @@
 #als container in docker
- docker run --name opc-ua-client localhost:5000/opc-ua-client:latest -p 4334:4334 -p 1883:1883 npm start "opc.tcp://DESKTOP-BMPPPBP:4334/OPCUA/SimulationServer" "ns=5;s=Counter1" "mqtt://127.0.0.1" "Counter1"
+ docker run --name opc-ua-gateway localhost:5000/opc-ua-gateway:latest -p 4334:4334 -p 1883:1883 npm start "opc.tcp://DESKTOP-BMPPPBP:4334/OPCUA/SimulationServer" "ns=5;s=Counter1" "mqtt://127.0.0.1" "Counter1"
 
 
 #ohne docker
-npm start opc.tcp://DESKTOP-BMPPPBP:4334/OPCUA/SimulationServer  ns=5;s=Counter1 mqtt://127.0.0.1 Counter1
+npm start opc.tcp://DESKTOP-BMPPPBP:4334/OPCUA/SimulationServer  ns=5;s=Counter1 mqtt://DESKTOP-BMPPPBP Counter1
